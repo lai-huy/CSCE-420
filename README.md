@@ -1,4 +1,4 @@
-# CSCE 420
+# CSCE 420: Artificial Ingelligence
 ## Course Description
 Fundamental concepts and techniques of intelligent systems; representation and interpretation of knowledge on a computer; search strategies and control; active research areas and applications such as notational systems, natural language understanding, vision systems, planning algorithms, intelligent agents and expert systems.
 
