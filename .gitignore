@@ -1,4 +1,7 @@
 .vscode/
+revisions-*/
+
+hw[0-9]*
 *.gpg
 Syllabus.pdf
 Textbook.pdf
