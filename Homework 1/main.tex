@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+
+\input{hw-preamble}
+
+\begin{document}
+\thispagestyle{empty}
+\hw{1}{17 September 2023}
+
+\problem Consider depth first search. When the goal is \circled{18} and the node is visited
+(taken out of node list):
+
+\subproblem What are the nodes that remain in the node list? (list them in the correct order).
+
+\solution
+$[19,5,3]$
+
+\subproblem Which nodes have been visited until then, in what order?
+
+\solution
+$[1,2,4,8,16,9]$
+
+\problem Consider breadth first search. When the goal is \circled{6} and the node is visited
+(taken out of node list):
+
+\subproblem What are the nodes that remain in the node list? (list them in the correct order).
+
+\solution
+$[7]$
+
+\subproblem Which nodes have been visited until then, in what order?
+
+\solution
+$[1,2,3,4,5]$
+
+\problem Why is the space complexity of BFS $O\left(b^{d+1}\right)$, not $O\left(b^d\right)$, where $b$ is the branching factor and $d$ is the goal depth?
+
+\solution
+Since the BFS algorithm expands each node to get its children before visiting the node, the algorithm will expand the nodes at the $d$ depth before finishing thus adding one more layer in the total space that to be considered by the algorithm.
+
+\problem Can depth limited search become incomplete in the case of the finite search
+tree above? If so, give an example (use Figure 1). If not, explain why not (use Figure 1).
+
+\solution
+If the depth limit is $3$ and the node to find is \circled{11}, depth limited search will never find the node.
+
+\clearpage
+\problem Consider iterative deepening search. When the goal is \circled{12} , how many nodes are visited before reaching that node? Hint: Include repeated visits in the count. Include the visit to the goal \circled{12} in the count.
+
+\solution
+There are 30 nodes before the goal \circled{12}.
+
+\problem Show that the heuristic is admissible.
+
+\solution
+$h^*(H)=0,h^*(G)=20,h^*(F)=9+20=29,h^*(E)=20$\\
+$h^*(B)=29+12=41,h^*(C)=29+18=47,h^*(D)=20+25=54,h^*(A)=41+10=51$
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Node & $h^*(n)$ & $h(n)$ & $h^*(n) \geq h(n)$ \\
+\hline
+A & 51 & 41 & Yes \\
+B & 41 & 40 & Yes \\
+C & 47 & 37 & Yes \\
+D & 54 & 38 & Yes \\
+E & 20 & 17 & Yes \\
+F & 29 & 24 & Yes \\
+G & 20 & 19 & Yes \\
+H & 0 & 0 & Yes \\
+\hline
+\end{tabular}
+\caption{Comparison of $h^*(n)$ and $h(n)$}
+\end{table}
+\noindent
+Since $h^*(n)\geq h(n)\forall n\in\mathcal{G}$, The heuristic is admissible.
+
+\newpage
+\problem Manually conduct greedy best-first search on the graph below with initial node \circled{A} and goal node \circled{H}.
+
+\noindent
+NODE LIST:\\
+$(A)$: $h=41$, path = (A)\\
+$\rightarrow$ VISIT: $(A)$: $h=41$, path = (A)
+
+\noindent
+NODE LIST:\\
+$(B)$: $h=40$, path = (A, B)\\
+$(C)$: $h=37$, path = (A, C)\\
+$(D)$: $h=38$, path = (A, D)\\
+$\rightarrow$ VISIT: (C): $h=37$, path = (A, C)
+
+\noindent
+NODE LIST:\\
+(F): $h=24$, path = (A, C, F)\\
+(G): $h=19$, path = (A, C, G)\\
+(B): $h=40$, path = (A, B)\\
+(D): $h=38$, path = (A, D)\\
+$\rightarrow$ VISIT: (G): $h=19$, path = (A, C, G)
+
+\noindent
+NODE LIST:\\
+(H): $h=0$, path = (A, C, G, H)\\
+(F): $h=24$, path = (A, C, F)\\
+(B): $h=40$, path = (A, B)\\
+(D): $h=38$, path = (A, D)\\
+$\rightarrow$ VISIT: (H): $h=0$, path = (A, C, G, H)
+
+\noindent
+Cost of final path: $41+37+19+0=97$\\
+Final Path: (A, C, G, H)
+
+\newpage
+\problem Manually conduct greedy A$^*$ search on the graph below with initial node \circled{A} and goal node \circled{H}
+
+\noindent
+NODE LIST:\\
+(A): $f=0+41$, path = (A)\\
+$\rightarrow$ VISIT: (A): f = 41,path = (A)
+
+\noindent
+NODE LIST:\\
+(B): $f=10+40=50$, path = (A, B)\\
+(C): $f=12+37=49$ , path = (A, C)\\
+(D): $f=9+38=47$, path = (A, D)\\
+$\rightarrow$ VISIT: (D): $f=9+38=47$, path = (A, D)
+
+\noindent
+NODE LIST:\\
+($C_D$): $f=9+5+37=51$, path = (A, D, C)\\
+(G): $f=9+25+19=53$, path = (A, D, G)\\
+(B): $f=10+40=50$, path = (A, B)\\
+($C_A$): $f=12+37=49$ , path = (A, C)\\
+$\rightarrow$ VISIT: ($C_A$): $f=12+37=49$ , path = (A, C)
+
+\noindent
+NODE LIST:\\
+(F): $f=12+18+24=54$, path = (A, C, F)\\
+($G_C$): $f=12+29+19=60$, path = (A, C, G)\\
+($C_D$): $f=9+5+37=51$, path = (A, D, C)\\
+($G_D$): $f=9+25+19=53$, path = (A, D, G)\\
+(B): $f=10+40=50$, path = (A, B)\\
+$\rightarrow$ VISIT: (B): $f=10+40=50$, path = (A, B)
+
+\noindent
+NODE LIST:\\
+(E): $f=10+25+17=52$, path = (A, B, E) \\
+($F_B$): $f=10+12+24=46$, path = (A, B, F)\\
+($F_C$): $f=12+18+24=54$, path = (A, C, F)\\
+($G_C$): $f=12+29+19=60$, path = (A, C, G)\\
+($C_D$): $f=9+5+37=51$, path = (A, D, C)\\
+($G_D$): $f=9+25+19=53$, path = (A, D, G)\\
+$\rightarrow$ VISIT: ($F_B$): $f=10+12+24=46$, path = (A, B, F)
+
+\clearpage
+\noindent
+NODE LIST:\\
+($G_F$): $f=9+12+10+19=50$, path = (A, B, F, G)\\
+(H): $f=36+12+10+0=58$, path = (A, B, F, H)\\
+(E): $f=10+25+17=52$, path = (A, B, E) \\
+($F_C$): $f=12+18+24=54$, path = (A, C, F)\\
+($G_C$): $f=12+29+19=60$, path = (A, C, G)\\
+($C_D$): $f=9+5+37=51$, path = (A, D, C)\\
+($G_D$): $f=9+25+19=53$, path = (A, D, G)\\
+$\rightarrow$ VISIT: ($G_F$): $f=9+12+10+19=50$, path = (A, B, F, G)
+
+\noindent
+NODE LIST:\\
+($H_G$): $f=20+9+12+10+0=51$, path = (A, B, F, G, H)\\
+($H_F$): $f=36+12+10+0=58$, path = (A, B, F, H)\\
+(E): $f=10+25+17=52$, path = (A, B, E) \\
+($F_C$): $f=12+18+24=54$, path = (A, C, F)\\
+($G_C$): $f=12+29+19=60$, path = (A, C, G)\\
+($C_D$): $f=9+5+37=51$, path = (A, D, C)\\
+($G_D$): $f=9+25+19=53$, path = (A, D, G)\\
+$\rightarrow$ VISIT: ($C_D$): $f=9+5+37=51$, path = (A, D, C)
+
+\noindent
+NODE LIST:\\
+($F_C$): $f=9+5+18+24=56$, path = (A, D, C, F)\\
+($G_C$): $f=9+5+29+19=62$, path = (A, D, C, G)\\
+($H_G$): $f=20+9+12+10+0=51$, path = (A, B, F, G, H)\\
+($H_F$): $f=36+12+10+0=58$, path = (A, B, F, H)\\
+(E): $f=10+25+17=52$, path = (A, B, E) \\
+($F_C$): $f=12+18+24=54$, path = (A, C, F)\\
+($G_C$): $f=12+29+19=60$, path = (A, C, G)\\
+($G_D$): $f=9+25+19=53$, path = (A, D, G)\\
+$\rightarrow$ VISIT: ($H_G$): $f=20+9+12+10+0=51$, path = (A, B, F, G, H)
+
+\noindent
+Cost of final path: $20+9+12+10+0=51$\\
+Final Path: (A, B, F, G, H)
+
+\end{document}
