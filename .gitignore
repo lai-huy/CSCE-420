@@ -2,6 +2,7 @@
 revisions-*/
 
 hw[0-9]*
+Exam [0-9]*/
 *.gpg
 Syllabus.pdf
 Textbook.pdf
