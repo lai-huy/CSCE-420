@@ -95,10 +95,11 @@ grandparent(X, Y) :-
 stepmother(X, Y) :-
     female(X),          % X is a female
     parent(Z, Y),       % Z is a parent of Y
-    \+ parent(Y, Y2),   % Y is not a parent of itself (to exclude biological parents)
-    spouse(X, Z),       % X is a spouse of Z
-    Z \= Y.             % Z is not the same as Y
-
+    \+ parent(X, Y),    % X is not a parent of Y (to exclude biological parents)
+    spouse(X, W),       % X is a spouse of W
+    parent(W, Y),       % W is a parent of Y
+    Z \= Y,             % Z is not the same as Y
+    Z \= W.             % Z is not the same as W
 
 % cousin(X, Y) means X is a cousin of Y.
 cousin(X, Y) :-
