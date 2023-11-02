@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+
+\input{hw-preamble}
+
+\begin{document}
+\thispagestyle{empty}
+\hw{3}{5 November 2023}
+
+\problem Proof by resolution.
+\solution Translate the following into first-order logic.
+\begin{flalign*}
+    \text{Every kid likes Snoopy} \quad                                    & \quad \forall x(K(x)\rightarrow L(x, Snoopy))                                 \\
+    \text{Everyone who likes Snoopy likes all beagles} \quad               & \quad \forall x (L(x, Snoopy)\rightarrow (\forall y B(y)\rightarrow L(x, y))) \\
+    \text{Underdog is a beagle, and Underdog is a superhero} \quad         & \quad B(Underdog)\land S(Underdog)                                            \\
+    \text{Every superhero can fly or time travel} \quad                    & \quad \forall x(S(x)\rightarrow (F(x)\lor T(x)))                              \\
+    \text{No beagle can time travel} \quad                                 & \quad \lnot\exists x(B(x)\land T(x))                                          \\
+    \text{Garfield does not like all things that can fly} \quad            & \quad \lnot\forall x(F(x)\rightarrow L(Garfield, x))                          \\
+    \text{Garfield is not a kid. (goal that will be negated latter)} \quad & \quad \lnot K(Garfield)
+\end{flalign*}
+
+\noindent
+Convert the resulting formulas into a canonical form
+\begin{enumerate}
+    \item $\forall x(K(x)\rightarrow L(x, Snoopy))$\\
+          $\forall x(\lnot K(x)\lor L(x,Snoopy))$
+
+    \item $\forall x (L(x, Snoopy)\rightarrow \forall y (B(y)\rightarrow L(x, y)))$\\
+          $\forall x\forall y(L(x, Snoopy)\rightarrow (B(y)\rightarrow L(x,y)))$ \\
+          $\forall x\forall y(L(x, Snoopy)\rightarrow (\lnot B(y)\lor L(x,y)))$ \\
+          $\forall x\forall y(\lnot L(x, Snoopy)\lor (\lnot B(y)\lor L(x,y)))$ \\
+          $\forall x\forall y(\lnot L(x, Snoopy)\lor \lnot B(y)\lor L(x,y))$
+
+    \item $B(Underdog)\land S(Underdog)$\\
+          $B(Underdog)$\\
+          $S(Underdog)$
+
+    \item $\forall x(S(x)\rightarrow (F(x)\lor T(x)))$\\
+          $\forall x(\lnot S(x)\lor (F(x)\lor T(x)))$\\
+          $\forall x(\lnot S(x)\lor F(x)\lor T(x))$
+
+    \item $\lnot\exists x(B(x)\land T(x))$\\
+          $\forall x\lnot(B(x)\land T(x))$\\
+          $\forall x(\lnot B(x)\lor \lnot T(x))$
+
+    \item $\lnot\forall x(F(x)\rightarrow L(Garfield, x))$\\
+          $\lnot\forall x(\lnot F(x)\lor L(Garfield, x))$\\
+          $\exists x (F(x)\land \lnot L(Garfield, x)$\\
+          $F(\alpha)\land \lnot L(Garfield, \alpha)$\\
+          $F(\alpha)$\\
+          $\lnot L(Garfiled, \alpha)$
+
+    \item Negated goal: $K(Garfield)$
+\end{enumerate}
+
+\noindent
+Resolving negated goal clause with $\lnot K(x)\lor L(x,Snoopy)$\\
+$\sigma=\{x/Garfield\}$\\
+$L(Garfield, Snoopy)$
+
+\noindent
+Resolving $L(Garfield, Snoopy)$ with $\forall x\forall y(\lnot L(x, Snoopy)\lor \lnot B(y)\lor L(x,y))$\\
+$\sigma=\{x/Garfield\}$\\
+$\lnot B(y)\lor L(Garfield,y)$
+
+\noindent
+Resolving $\lnot B(y)\lor L(Garfield,y)$ with $B(Underdog)$\\
+$\sigma=\{y/Underdog\}$\\
+$L(Garfield,Underdog)$
+
+\noindent
+Resolving $L(Garfield,Underdog)$ with $\lnot L(Garfield,\alpha)$\\
+$\sigma=\{\alpha/Underdog\}$\\
+NULL Clause
+
+\noindent
+The statement is proven $\qed$
+
+\newpage
+\problem The resolution theorem prover.
+
+\solution The resolution theorem prover is included in the submission folder.
+
+\problem Prolog
+
+\solution
+The knowledge base is included in the submission folder as requested.\\
+The queries are translated to prolog as follows:
+\begin{minted}{prolog}
+grandparent(charles, X).
+brother(william, X), spouse(X, Y).
+uncle(X, charlotte).
+aunt(X, archie).
+nephew(X, harry).
+stepmother(X, william).
+sibling(X, Y).
+cousin(X, Y), female(X).
+niece(X, Y).
+\end{minted}
+
+\noindent
+The answers as determined by the Knowledge Base are as follows:
+\begin{minted}{prolog}
+X = george
+X = harry, Y = meghan
+X = harry
+X = catherine
+X = george
+X = camila
+X = william, Y = harry
+X = charlotte, Y = archie
+X = charlotte, Y = harry
+\end{minted}
+\end{document}
+
