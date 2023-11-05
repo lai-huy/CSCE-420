@@ -57,16 +57,12 @@ mother(X, Y) :- female(X), parent(X, Y).
 % brother(X, Y) means X is a brother of Y.
 brother(X, Y) :-
     male(X),
-    parent(Z, X),   % X shares at least one parent with Y
-    parent(Z, Y),
-    X \= Y.         % X is not the same as Y
+    sibling(X, Y).
 
 % sister(X, Y) means X is a sister of Y.
 sister(X, Y) :-
     female(X),
-    parent(Z, X),   % X shares at least one parent with Y
-    parent(Z, Y),
-    X \= Y.         % X is not the same as Y
+    sibling(X, Y).
 
 % Sibling(X, Y) means X is a sibling of Y.
 sibling(X, Y) :-

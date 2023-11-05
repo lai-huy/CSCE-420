@@ -1,4 +1,5 @@
 .vscode/
+revisions/
 revisions-*/
 
 hw[0-9]*
