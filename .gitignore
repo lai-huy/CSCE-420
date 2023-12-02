@@ -6,7 +6,7 @@ hw[0-9]*
 Exam [0-9]*/
 *.gpg
 *.aux
-*,fdb_latexmk
+*.fdb_latexmk
 *.fls
 *.log
 family-results.txt
