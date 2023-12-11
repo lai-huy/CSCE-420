@@ -53,7 +53,7 @@ For example, if we observe the Alarm going off:
 \solution
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{Question 4.png}
+    \includegraphics[width=0.75\textwidth]{Images/Question 4.png}
     \caption{Question 4 Decision Tree}
 \end{figure}
 
@@ -112,17 +112,33 @@ Based on the calculated values for the information gains, we should test Attribu
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[height=256px]{Question 7 Simplified.png}
+        \includegraphics[height=256px]{Images/Question 7 Simplified.png}
         \caption{Simplified Decision Tree}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[height=256px]{Question 7 Original.png}
+        \includegraphics[height=256px]{Images/Question 7 Original.png}
         \caption{Original Decision Tree}
     \end{subfigure}
     \caption{Comparison of Decision Trees}
 \end{figure}
 
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[height=256px]{Images/Question 7 Tree 1.png}
+        \caption{Novel Tree 1}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[height=256px]{Images/Question 7 Tree 2.png}
+        \caption{Novel Tree 2}
+    \end{subfigure}
+    \caption{Novel Trees}
+\end{figure}
+
+\newpage
 \problem Perceptron
 
 \solution The code is included in the submission folder as requested.
@@ -133,26 +149,13 @@ Based on the calculated values for the information gains, we should test Attribu
 \solution
 \begin{figure}[!ht]
     \centering
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\LARGE]
-        \draw  (1.25,17.25) rectangle  node {\LARGE $x_1$} (3.75,14.75);
-        \draw  (1.25,13.5) rectangle node {\LARGE$x_2$} (3.75,11);
-        \draw  (6.25,17.25) rectangle node {\LARGE$h_1$} (8.75,14.75);
-        \draw  (6.25,13.5) rectangle node {\LARGE$h_2$} (8.75,11);
-        \draw  (11.25,14.75) rectangle node {\LARGE$y$} (13.75,12.25);
-        \draw [->, >=Stealth] (3.75,16) .. controls (5,16) and (5,16) .. (6.25,16);
-        \draw [->, >=Stealth] (3.75,12.25) .. controls (5,12.25) and (5,12.25) .. (6.25,12.25);
-        \draw [->, >=Stealth] (8.75,12.25) .. controls (10,13) and (10,13) .. (11.25,13.5);
-        \draw [->, >=Stealth] (8.75,16) .. controls (10,14.75) and (10,14.75) .. (11.25,13.5);
-        \draw [->, >=Stealth] (3.75,12.25) .. controls (5,14.25) and (5,14.25) .. (6.25,16);
-        \draw [->, >=Stealth] (3.75,16) .. controls (5,14.25) and (5,14.25) .. (6.25,12.25);
-    \end{tikzpicture}
+    \includegraphics{Images/Question 9 Perceptron.png}
     \caption{XOR Perceptron}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics{Question 9 Decision Boundary.png}
+    \includegraphics{Images/Question 9 Decision Boundary.png}
     \caption{XOR Decision Boundary}
 \end{figure}
 
